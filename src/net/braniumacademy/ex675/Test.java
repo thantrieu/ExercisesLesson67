@@ -2,7 +2,9 @@ package net.braniumacademy.ex675;
 
 import net.braniumacademy.ex675.comparator.*;
 import net.braniumacademy.ex675.exceptions.InvalidDateFormatException;
+import net.braniumacademy.ex675.exceptions.InvalidEmailException;
 import net.braniumacademy.ex675.exceptions.InvalidNameException;
+import net.braniumacademy.ex675.exceptions.InvalidPhoneNumberException;
 
 import java.io.File;
 import java.io.IOException;
@@ -480,7 +482,8 @@ public class Test {
                         email, phoneNum, empId, duty,
                         salary, exp, workingDay,
                         totalSalary, bonus, start, end);
-            } catch (ParseException | InvalidNameException e) {
+            } catch (ParseException | InvalidNameException
+                    | InvalidPhoneNumberException | InvalidEmailException e) {
                 e.printStackTrace();
             }
         } else {
@@ -488,7 +491,8 @@ public class Test {
                 return new Employee(id, fullName, address, dob,
                         email, phoneNum, empId, duty,
                         salary, exp, workingDay, totalSalary, bonus);
-            } catch (InvalidNameException e) {
+            } catch (InvalidNameException | InvalidPhoneNumberException
+                    | InvalidEmailException e) {
                 e.printStackTrace();
             }
         }
@@ -634,7 +638,8 @@ public class Test {
         }
         try {
             return new Manager(employee, start, end);
-        } catch (InvalidNameException e) {
+        } catch (InvalidNameException | InvalidPhoneNumberException
+                | InvalidEmailException e) {
             e.printStackTrace();
         }
         return null;
@@ -686,7 +691,8 @@ public class Test {
         try {
             return new Employee(pId, name, address, dob, email,
                     phoneNumber, null, duty, salary, exp, workingDay, 0, 0);
-        } catch (InvalidNameException e) {
+        } catch (InvalidNameException | InvalidPhoneNumberException
+                | InvalidEmailException e) {
             e.printStackTrace();
             return null;
         }

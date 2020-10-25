@@ -1,6 +1,8 @@
 package net.braniumacademy.ex675;
 
+import net.braniumacademy.ex675.exceptions.InvalidEmailException;
 import net.braniumacademy.ex675.exceptions.InvalidNameException;
+import net.braniumacademy.ex675.exceptions.InvalidPhoneNumberException;
 
 import java.util.Date;
 
@@ -34,7 +36,8 @@ public class Employee extends Person {
                     Date dateOfBirth, String email, String phoneNumber,
                     String empId, String duty, float salary,
                     float experience, float workingDay, float totalSalary,
-                    float bonus) throws InvalidNameException {
+                    float bonus) throws InvalidNameException,
+            InvalidPhoneNumberException, InvalidEmailException {
         super(id, fullName, address, dateOfBirth, email, phoneNumber);
         setEmpId(empId);
         this.duty = duty;

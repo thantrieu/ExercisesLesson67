@@ -1,6 +1,8 @@
 package net.braniumacademy.ex675;
 
+import net.braniumacademy.ex675.exceptions.InvalidEmailException;
 import net.braniumacademy.ex675.exceptions.InvalidNameException;
+import net.braniumacademy.ex675.exceptions.InvalidPhoneNumberException;
 
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -22,13 +24,14 @@ public abstract class Person implements Comparable<Person> {
 
     public Person(String id, String fullName, String address,
                   Date dateOfBirth, String email, String phoneNumber)
-            throws InvalidNameException {
+            throws InvalidNameException, InvalidPhoneNumberException,
+            InvalidEmailException {
         this.id = id;
         this.setFullName(fullName);
         this.address = address;
         this.dateOfBirth = dateOfBirth;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.setEmail(email);
+        this.setPhoneNumber(phoneNumber);
     }
 
     // sắp xếp theo mã chứng minh thư tăng dần
@@ -142,16 +145,34 @@ public abstract class Person implements Comparable<Person> {
         return email;
     }
 
-    public final void setEmail(String email) {
-        this.email = email;
+    public final void setEmail(String email) throws InvalidEmailException {
+        var regex = "^[a-z]+[a-z0-9._]*@gmail.com$";
+        Pattern pattern  = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        if(matcher.matches()) {
+            this.email = email;
+        } else {
+            var msg = "Email không hợp lệ: " + email;
+            throw new InvalidEmailException(msg, email);
+        }
     }
 
     public final String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public final void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public final void setPhoneNumber(String phoneNumber)
+            throws InvalidPhoneNumberException {
+        // định dạng số điện thoại
+        var regex = "^((08|09)\\d{7})|((03|04|07)\\d{8})$";
+        Pattern pattern  = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(phoneNumber);
+        if(matcher.matches()) {
+            this.phoneNumber = phoneNumber;
+        } else {
+            var msg = "Số điện thoại không hợp lệ: " + phoneNumber;
+            throw new InvalidPhoneNumberException(msg, phoneNumber);
+        }
     }
 
     public class FullName {

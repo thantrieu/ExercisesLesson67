@@ -1,6 +1,8 @@
 package net.braniumacademy.ex675;
 
+import net.braniumacademy.ex675.exceptions.InvalidEmailException;
 import net.braniumacademy.ex675.exceptions.InvalidNameException;
+import net.braniumacademy.ex675.exceptions.InvalidPhoneNumberException;
 
 import java.util.Date;
 
@@ -13,7 +15,8 @@ public class Manager extends Employee {
     }
 
     public Manager(Employee emp, Date startDate, Date endDate)
-            throws InvalidNameException {
+            throws InvalidNameException, InvalidPhoneNumberException,
+            InvalidEmailException {
         super(emp.getId(), emp.getFullNameString(), emp.getAddress(),
                 emp.getDateOfBirth(), emp.getEmail(), emp.getPhoneNumber(),
                 emp.getEmpId(), emp.getDuty(), emp.getSalary(),
@@ -35,7 +38,8 @@ public class Manager extends Employee {
                    Date dateOfBirth, String email, String phoneNumber,
                    String empId, String duty, float salary, float experience,
                    float workingDay, float totalSalary, float bonus,
-                   Date startDate, Date endDate) throws InvalidNameException {
+                   Date startDate, Date endDate) throws InvalidNameException,
+            InvalidPhoneNumberException, InvalidEmailException {
         super(id, fullName, address, dateOfBirth, email,
                 phoneNumber, empId, duty, salary, experience,
                 workingDay, totalSalary, bonus);

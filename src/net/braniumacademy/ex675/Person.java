@@ -3,6 +3,8 @@ package net.braniumacademy.ex675;
 import net.braniumacademy.ex675.exceptions.InvalidNameException;
 
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * lớp mô tả thông tin người
@@ -83,7 +85,10 @@ public abstract class Person implements Comparable<Person> {
     public final void setFullName(String fullName) throws InvalidNameException {
         this.fullName = new FullName();
         if (fullName != null && fullName.length() > 0) {
-            if (!checkFullNameValid(fullName.toLowerCase())) {
+            var regex = "\\w+.*[^0-9].*";
+            Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(fullName);
+            if (!matcher.matches()) {
                 var msg = "Họ tên không hợp lệ: " + fullName;
                 throw new InvalidNameException(msg, fullName);
             }

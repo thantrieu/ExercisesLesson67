@@ -3,7 +3,6 @@ package net.braniumacademy.ex675;
 import net.braniumacademy.ex675.comparator.*;
 import net.braniumacademy.ex675.exceptions.InvalidDateFormatException;
 import net.braniumacademy.ex675.exceptions.InvalidNameException;
-import net.braniumacademy.ex675.exceptions.InvalidWorkingDayException;
 
 import java.io.File;
 import java.io.IOException;
@@ -452,7 +451,7 @@ public class Test {
      * @return đối tượng được tham chiếu đến bởi kiểu Employee
      */
     private static Employee createEmpFromData(String[] data,
-                                                                       SimpleDateFormat dateFormat) {
+                                              SimpleDateFormat dateFormat) {
         var id = data[0];
         var fullName = data[1];
         var address = data[2];
@@ -481,8 +480,7 @@ public class Test {
                         email, phoneNum, empId, duty,
                         salary, exp, workingDay,
                         totalSalary, bonus, start, end);
-            } catch (ParseException | InvalidNameException
-                    | InvalidWorkingDayException e) {
+            } catch (ParseException | InvalidNameException e) {
                 e.printStackTrace();
             }
         } else {
@@ -490,7 +488,7 @@ public class Test {
                 return new Employee(id, fullName, address, dob,
                         email, phoneNum, empId, duty,
                         salary, exp, workingDay, totalSalary, bonus);
-            } catch (InvalidNameException | InvalidWorkingDayException e) {
+            } catch (InvalidNameException e) {
                 e.printStackTrace();
             }
         }
@@ -638,8 +636,6 @@ public class Test {
             return new Manager(employee, start, end);
         } catch (InvalidNameException e) {
             e.printStackTrace();
-        } catch (InvalidWorkingDayException e) {
-            e.printStackTrace();
         }
         return null;
     }
@@ -668,7 +664,7 @@ public class Test {
         Date dob = null;
         // nhập vào ngày tháng năm theo đúng định dạng, loại bỏ khoảng trắng đầu cuối
         var dobStr = input.nextLine().trim();
-        if (!dobStr.matches("\\d{2}/\\d{2}/\\d{4}")) {
+        if (!dobStr.matches("^\\d{2}/\\d{2}/\\d{4}$")) {
             var msg = "Ngày sinh không đúng định dạng dd/MM/yyyy: " + dobStr;
             throw new InvalidDateFormatException(msg, dobStr);
         }
@@ -690,7 +686,7 @@ public class Test {
         try {
             return new Employee(pId, name, address, dob, email,
                     phoneNumber, null, duty, salary, exp, workingDay, 0, 0);
-        } catch (InvalidNameException | InvalidWorkingDayException e) {
+        } catch (InvalidNameException e) {
             e.printStackTrace();
             return null;
         }

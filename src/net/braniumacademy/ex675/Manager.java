@@ -1,7 +1,6 @@
 package net.braniumacademy.ex675;
 
 import net.braniumacademy.ex675.exceptions.InvalidNameException;
-import net.braniumacademy.ex675.exceptions.InvalidWorkingDayException;
 
 import java.util.Date;
 
@@ -14,7 +13,7 @@ public class Manager extends Employee {
     }
 
     public Manager(Employee emp, Date startDate, Date endDate)
-            throws InvalidNameException, InvalidWorkingDayException {
+            throws InvalidNameException {
         super(emp.getId(), emp.getFullNameString(), emp.getAddress(),
                 emp.getDateOfBirth(), emp.getEmail(), emp.getPhoneNumber(),
                 emp.getEmpId(), emp.getDuty(), emp.getSalary(),
@@ -26,8 +25,7 @@ public class Manager extends Employee {
 
     public Manager(String empId, String duty, float salary,
                    float experience, float workingDay, float totalSalary,
-                   float bonus, Date startDate, Date endDate)
-            throws InvalidWorkingDayException {
+                   float bonus, Date startDate, Date endDate) {
         super(empId, duty, salary, experience, workingDay, totalSalary, bonus);
         this.startDate = startDate;
         this.endDate = endDate;
@@ -37,8 +35,7 @@ public class Manager extends Employee {
                    Date dateOfBirth, String email, String phoneNumber,
                    String empId, String duty, float salary, float experience,
                    float workingDay, float totalSalary, float bonus,
-                   Date startDate, Date endDate) throws InvalidNameException,
-            InvalidWorkingDayException {
+                   Date startDate, Date endDate) throws InvalidNameException {
         super(id, fullName, address, dateOfBirth, email,
                 phoneNumber, empId, duty, salary, experience,
                 workingDay, totalSalary, bonus);
@@ -87,7 +84,7 @@ public class Manager extends Employee {
 
     @Override
     public String receiBonus() {
-       return "Nhận cổ phiếu";
+        return "Nhận cổ phiếu";
     }
 
     @Override

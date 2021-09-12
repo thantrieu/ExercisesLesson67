@@ -88,6 +88,8 @@ public abstract class Person implements Comparable<Person> {
     public final void setFullName(String fullName) throws InvalidNameException {
         this.fullName = new FullName();
         if (fullName != null && fullName.length() > 0) {
+            // tên phải bắt đầu bởi chữ cái, tối thiểu 2 kí tự, tối đa 30 kí tự, có thể phân tách các từ
+            // bằng khoảng trắng. chấp nhận kí tự tiếng việt có dấu
             var regex = "^([a-zA-ZẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴ]+\\s?){2,30}$";
             Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE|Pattern.CANON_EQ|Pattern.UNICODE_CASE);
             Matcher matcher = pattern.matcher(fullName);

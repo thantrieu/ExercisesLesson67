@@ -1,11 +1,14 @@
 package net.braniumacademy.ex673;
 
+import net.braniumacademy.ex673.exceptions.*;
+
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Instructor {
-    private String id;      // mã nhân viên
-    private String fullName;// họ và tên
+    private String instructorId; // mã giảng viên
+    private String fullName;
     private String major;   // chuyên môn
     private float salary;   // lương
     private float experience; // số năm kinh nghiệm
@@ -13,34 +16,16 @@ public class Instructor {
     public Instructor() {
     }
 
-    public Instructor(String id) {
-        this.id = id;
+    public Instructor(String instructorId) {
+        this.instructorId = instructorId;
     }
 
-    public Instructor(String id, String fullName,
-                      String major, float salary, float experience)
-            throws InvalidSalaryException {
-        this.id = id;
+    public Instructor(String instructorId, String fullName, String major, float salary, float experience) {
+        this.instructorId = instructorId;
         this.fullName = fullName;
         this.major = major;
-        this.setSalary(salary);
+        this.salary = salary;
         this.experience = experience;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public String getMajor() {
@@ -67,6 +52,22 @@ public class Instructor {
                     + ", giá trị hợp lệ phải nằm trong đoạn [0.00, 80.00]";
             throw new InvalidSalaryException(msg, salary);
         }
+    }
+
+    public String getInstructorId() {
+        return instructorId;
+    }
+
+    public void setInstructorId(String instructorId) {
+        this.instructorId = instructorId;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public float getExperience() {

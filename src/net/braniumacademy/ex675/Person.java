@@ -88,8 +88,8 @@ public abstract class Person implements Comparable<Person> {
     public final void setFullName(String fullName) throws InvalidNameException {
         this.fullName = new FullName();
         if (fullName != null && fullName.length() > 0) {
-            var regex = "\\w+.*[^0-9].*";
-            Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+            var regex = "^([a-zA-ZẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴ]+\\s?){2,30}$";
+            Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE|Pattern.CANON_EQ|Pattern.UNICODE_CASE);
             Matcher matcher = pattern.matcher(fullName);
             if (!matcher.matches()) {
                 var msg = "Họ tên không hợp lệ: " + fullName;

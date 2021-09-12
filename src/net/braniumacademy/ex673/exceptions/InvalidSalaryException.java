@@ -1,4 +1,4 @@
-package net.braniumacademy.ex673;
+package net.braniumacademy.ex673.exceptions;
 
 public class InvalidSalaryException extends Exception {
     private float invalidSalary;
